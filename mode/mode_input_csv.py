@@ -7,7 +7,7 @@ from Machine_Learning.jaringanSarafTiruan import SimpleNeuralNetwork
 
 
 # Load model dan scaler
-model = joblib.load('Machine_Learning/model')
+model = joblib.load('Machine_Learning/model_baru')
 scaler_fitur_data = joblib.load('Machine_Learning/scaler_fiturData')
 scaler_label_data = joblib.load('Machine_Learning/scaler_labelData')
 
