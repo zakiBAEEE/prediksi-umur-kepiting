@@ -39,7 +39,7 @@ def predict_csv():
         predictions_denormalized = scaler_label_data.inverse_transform(predictions_normalized.reshape(-1, 1))
 
         # Tambahkan hasil prediksi ke DataFrame
-        df['Predicted_Value'] = predictions_denormalized.flatten()
+        df['Umur'] = predictions_denormalized.flatten()
 
         # Simpan hasil ke file baru
         save_path = filedialog.asksaveasfilename(defaultextension=".csv",
