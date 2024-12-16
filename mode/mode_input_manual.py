@@ -47,7 +47,7 @@ def get_prediction(entry_length, entry_diameter, entry_height, entry_weight, ent
         prediction_denormalized = scaler_label_data.inverse_transform([prediction_normalized])
 
         final_prediction = prediction_denormalized[0][0]
-        label_result.config(text=f"Umur Kepiting: {final_prediction} Bulan")
+        label_result.config(text=f"Umur Kepiting: {final_prediction:.1f} Bulan")
 
         entry_length.delete(0, tk.END)
         entry_diameter.delete(0, tk.END)
