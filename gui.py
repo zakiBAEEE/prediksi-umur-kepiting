@@ -2,18 +2,18 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import font
 import numpy as np
-from jaringanSarafTiruan import SimpleNeuralNetwork  # Import fungsi prediksi dari model Anda
+from Machine_Learning.jaringanSarafTiruan import SimpleNeuralNetwork
 import joblib
 
 # Load model yang telah disimpan menggunakan joblib
 try:
-    model = joblib.load('Machine Learning/model')
+    model = joblib.load('Machine_Learning/model')
 except FileNotFoundError:
     raise Exception("Model file not found! Make sure the model file exists in the correct path.")
 
 try:
-    scaler_fitur_data = joblib.load('Machine Learning/scaler_fiturData')
-    scaler_label_data = joblib.load('Machine Learning/scaler_labelData')
+    scaler_fitur_data = joblib.load('Machine_Learning/scaler_fiturData')
+    scaler_label_data = joblib.load('Machine_Learning/scaler_labelData')
 except FileNotFoundError:
     raise Exception("Scaler file not found! Make sure the scaler file exists in the correct path.")
 
