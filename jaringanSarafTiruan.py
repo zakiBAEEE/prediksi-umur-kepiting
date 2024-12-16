@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 class SimpleNeuralNetwork:
     def __init__(self, learning_rate=0.01, epochs=100, random=1):
 
