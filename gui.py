@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import font
 import numpy as np
 from jaringanSarafTiruan import SimpleNeuralNetwork  # Import fungsi prediksi dari model Anda
 import joblib
@@ -23,6 +24,7 @@ def predict(features):
     prediction = model.predict(features)
     return prediction.tolist()[0]  # Mengembalikan hasil sebagai float
 
+
 # Fungsi untuk mengirim data input dan mendapatkan prediksi
 def get_prediction():
     try:
@@ -39,13 +41,11 @@ def get_prediction():
         sex = var_sex.get()
 
         # Data input untuk dikirim ke fungsi predict
-        features = np.array([[
-            length, diameter, height, weight, 
-            shucked_weight, viscera_weight, shell_weight,
-            int(sex == 'f'), int(sex == 'i'), int(sex == 'm')
-        ]])
+        features = np.array([[length, diameter, height, weight,
+                              shucked_weight, viscera_weight, shell_weight,
+                              int(sex == 'f'), int(sex == 'i'), int(sex == 'm')]])
 
-         # Normalisasi input menggunakan scaler
+        # Normalisasi input menggunakan scaler
         features_normalized = scaler_fitur_data.transform(features)
 
         # Panggil fungsi predict dan dapatkan hasilnya
@@ -53,79 +53,97 @@ def get_prediction():
 
         prediction_denormalized = scaler_label_data.inverse_transform([prediction_normalized])
 
-        # final_prediction = prediction_denormalized[0][0]
+        # Update label result
+        final_prediction = prediction_denormalized[0][0]
+        label_result.config(text=f"Umur Kepiting: {final_prediction:.1f} Bulan")
 
+        # Clear semua input field setelah prediksi
+        entry_length.delete(0, tk.END)
+        entry_diameter.delete(0, tk.END)
+        entry_height.delete(0, tk.END)
+        entry_weight.delete(0, tk.END)
+        entry_shucked_weight.delete(0, tk.END)
+        entry_viscera_weight.delete(0, tk.END)
+        entry_shell_weight.delete(0, tk.END)
+        var_sex.set('f')
 
-        label_result.config(text=f"Predicted Value: {prediction_denormalized}")
 
     except ValueError:
         messagebox.showerror("Input Error", "Please enter valid numeric values for all fields.")
     except Exception as e:
         messagebox.showerror("Prediction Error", str(e))
 
+
 # Initialize Tkinter window
 root = tk.Tk()
-root.title("Prediction App")
-root.geometry("400x600")  # Menambahkan ukuran lebih tinggi untuk input tambahan
+root.title("Prediction Umur Kepiting")
+root.geometry("500x500")  # Menambahkan ukuran lebih tinggi untuk input tambahan
+
+# Styling
+title_font = font.Font(family="Helvetica", size=17, weight="bold")
+label_font = font.Font(family="Arial", size=13, )
+result_font = font.Font(family="Arial", size=14, weight="bold")
+
+# Title
+title_label = tk.Label(root, text="Prediksi Umur Kepiting", font=title_font, fg="Black")
+title_label.grid(row=0, column=0, columnspan=2, pady=(10, 20))
 
 # Labels and entry fields for features
-label_length = tk.Label(root, text="Length")
-label_length.grid(row=0, column=0, padx=10, pady=5, sticky="w")
-entry_length = tk.Entry(root)
-entry_length.grid(row=0, column=1, padx=10, pady=5)
+inputs = [
+    ("Length", 1), ("Diameter", 2), ("Height", 3),
+    ("Weight", 4), ("Shucked Weight", 5), ("Viscera Weight", 6), ("Shell Weight", 7)
+]
 
-label_diameter = tk.Label(root, text="Diameter")
-label_diameter.grid(row=1, column=0, padx=10, pady=5, sticky="w")
-entry_diameter = tk.Entry(root)
-entry_diameter.grid(row=1, column=1, padx=10, pady=5)
+entries = {}
+for text, row in inputs:
+    label = tk.Label(root, text=text, font=label_font)
+    label.grid(row=row, column=0, padx=10, pady=5, sticky="e")
+    entry = tk.Entry(root, font=label_font)
+    entry.grid(row=row, column=1, padx=10, pady=5, sticky="w")
+    entries[text] = entry
 
-label_height = tk.Label(root, text="Height")
-label_height.grid(row=2, column=0, padx=10, pady=5, sticky="w")
-entry_height = tk.Entry(root)
-entry_height.grid(row=2, column=1, padx=10, pady=5)
-
-label_weight = tk.Label(root, text="Weight")
-label_weight.grid(row=3, column=0, padx=10, pady=5, sticky="w")
-entry_weight = tk.Entry(root)
-entry_weight.grid(row=3, column=1, padx=10, pady=5)
-
-# Input baru: Shucked Weight
-label_shucked_weight = tk.Label(root, text="Shucked Weight")
-label_shucked_weight.grid(row=4, column=0, padx=10, pady=5, sticky="w")
-entry_shucked_weight = tk.Entry(root)
-entry_shucked_weight.grid(row=4, column=1, padx=10, pady=5)
-
-# Input baru: Viscera Weight
-label_viscera_weight = tk.Label(root, text="Viscera Weight")
-label_viscera_weight.grid(row=5, column=0, padx=10, pady=5, sticky="w")
-entry_viscera_weight = tk.Entry(root)
-entry_viscera_weight.grid(row=5, column=1, padx=10, pady=5)
-
-# Input baru: Shell Weight
-label_shell_weight = tk.Label(root, text="Shell Weight")
-label_shell_weight.grid(row=6, column=0, padx=10, pady=5, sticky="w")
-entry_shell_weight = tk.Entry(root)
-entry_shell_weight.grid(row=6, column=1, padx=10, pady=5)
+# Assign to specific variables
+entry_length = entries["Length"]
+entry_diameter = entries["Diameter"]
+entry_height = entries["Height"]
+entry_weight = entries["Weight"]
+entry_shucked_weight = entries["Shucked Weight"]
+entry_viscera_weight = entries["Viscera Weight"]
+entry_shell_weight = entries["Shell Weight"]
 
 # Radio buttons for categorical feature (Sex)
-label_sex = tk.Label(root, text="Sex")
-label_sex.grid(row=7, column=0, padx=10, pady=5, sticky="w")
+label_sex = tk.Label(root, text="Sex", font=label_font)
+label_sex.grid(row=8, column=0, padx=10, pady=5, sticky="e")
 
 var_sex = tk.StringVar(value='f')  # Default value
 
-radio_sex_f = tk.Radiobutton(root, text="Female", variable=var_sex, value='f')
-radio_sex_f.grid(row=7, column=1, sticky="w")
-radio_sex_i = tk.Radiobutton(root, text="Infant", variable=var_sex, value='i')
-radio_sex_i.grid(row=8, column=1, sticky="w")
-radio_sex_m = tk.Radiobutton(root, text="Male", variable=var_sex, value='m')
-radio_sex_m.grid(row=9, column=1, sticky="w")
+frame_sex = tk.Frame(root)
+frame_sex.grid(row=8, column=1, pady=5, sticky="w")
+tk.Radiobutton(frame_sex, text="Female", variable=var_sex, value='f', font=label_font).pack(side="left", padx=10)
+tk.Radiobutton(frame_sex, text="Infant", variable=var_sex, value='i', font=label_font).pack(side="left", padx=5)
+tk.Radiobutton(frame_sex, text="Male", variable=var_sex, value='m', font=label_font).pack(side="left", padx=5)
+
+# Fungsi efek hover
+def on_enter(event):
+    button_predict.config(bg="red", fg="white")  # Ubah warna tombol saat hover
+
+def on_leave(event):
+    button_predict.config(bg="blue", fg="white")  # Kembali ke warna semula
 
 # Predict button
-button_predict = tk.Button(root, text="Predict", command=get_prediction)
-button_predict.grid(row=10, column=0, columnspan=2, pady=20)
+button_predict = tk.Button(root, text="Predict", command=get_prediction, bg="blue", fg="white", font=label_font)
+button_predict.grid(row=9, column=0, columnspan=2, pady=20)
 
-# Result Label
-label_result = tk.Label(root, text="Prediction result will appear here", wraplength=300)
-label_result.grid(row=11, column=0, columnspan=2, pady=10)
+# Bind event hover
+button_predict.bind("<Enter>", on_enter)  # Saat mouse masuk
+button_predict.bind("<Leave>", on_leave)  # Saat mouse keluar
 
+
+# Result Label (Centered)
+label_result = tk.Label(root, text="Prediction result will appear here", font=result_font, fg="red", wraplength=400)
+label_result.grid(row=10, column=0, columnspan=2, pady=20)
+
+# Center alignment
+root.columnconfigure(0, weight=1)
+root.columnconfigure(1, weight=1)
 root.mainloop()
