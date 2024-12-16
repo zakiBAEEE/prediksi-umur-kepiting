@@ -7,7 +7,7 @@ app = Flask(__name__)
 #DATA INPUT BLM DINORMALISASI WOII
 # Load model yang telah disimpan menggunakan joblib
 try:
-    model = joblib.load('pengetahuan')
+    model = joblib.load('Machine Learning/model')
 except FileNotFoundError:
     raise Exception("Model file not found! Make sure 'pengetahuan' is in the same directory.")
 

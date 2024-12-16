@@ -2,44 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 import requests
 
-# Fungsi untuk mengirim data ke server Flask dan mendapatkan prediksi
-def get_prediction():
-    try:
-        # Ambil input dari entry fields
-        length = float(entry_length.get())
-        diameter = float(entry_diameter.get())
-        height = float(entry_height.get())
-        weight = float(entry_weight.get())
-        age = int(entry_age.get())
-
-        # Ambil input dari radio button
-        sex = var_sex.get()
-
-        # Data input untuk dikirim ke backend
-        data = {
-            'length': length,
-            'diameter': diameter,
-            'height': height,
-            'weight': weight,
-            'age': age,
-            'sex_f': int(sex == 'f'),
-            'sex_i': int(sex == 'i'),
-            'sex_m': int(sex == 'm')
-        }
-
-        # Kirim data ke server Flask menggunakan POST request
-        response = requests.post('http://127.0.0.1:5000/predict', json=data)
-
-        if response.status_code == 200:
-            prediction = response.json().get('prediction')
-            # Tampilkan hasil prediksi
-            messagebox.showinfo("Prediction Result", f"Predicted Value: {prediction:.2f}")
-        else:
-            messagebox.showerror("Error", "Error in prediction: " + response.json().get('error', 'Unknown error'))
-
-    except ValueError:
-        messagebox.showerror("Input Error", "Please enter valid numeric values for all fields.")
-
 # Initialize Tkinter window
 root = tk.Tk()
 root.title("Prediction App")
@@ -85,7 +47,7 @@ radio_sex_m = tk.Radiobutton(root, text="Male", variable=var_sex, value='m')
 radio_sex_m.grid(row=7, column=1, sticky="w")
 
 # Predict button
-button_predict = tk.Button(root, text="Predict", command=get_prediction)
+button_predict = tk.Button(root, text="Predict", command="")
 button_predict.grid(row=8, column=0, columnspan=2, pady=20)
 
 root.mainloop()
