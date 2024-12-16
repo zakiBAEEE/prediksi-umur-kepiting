@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
 from Machine_Learning.jaringanSarafTiruan import SimpleNeuralNetwork
-from mode_input_manual import start_manual_input_mode # Impor mode_input_manual
+from mode.mode_input_manual import start_manual_input_mode # Impor mode_input_manual
+from mode.mode_input_csv import predict_csv
 
 def open_csv_input_mode():
     # Implementasikan mode input CSV di sini
@@ -24,7 +25,7 @@ def main():
     button_manual = tk.Button(root, text="Input Manual", font=label_font, command=start_manual_input_mode)
     button_manual.pack(pady=10)
 
-    button_csv = tk.Button(root, text="Input CSV", font=label_font, command=open_csv_input_mode)
+    button_csv = tk.Button(root, text="Input CSV", font=label_font, command=predict_csv)
     button_csv.pack(pady=10)
 
     root.mainloop()

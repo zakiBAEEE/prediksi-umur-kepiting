@@ -54,21 +54,4 @@ def predict_csv():
     except Exception as e:
         messagebox.showerror("Error", f"Terjadi kesalahan: {str(e)}")
 
-# GUI sederhana untuk 2 mode
-root = tk.Tk()
-root.title("Prediksi Umur Kepiting")
-root.geometry("400x300")
 
-# Label Judul
-label_title = tk.Label(root, text="Pilih Mode Prediksi", font=("Helvetica", 16, "bold"))
-label_title.pack(pady=20)
-
-# Tombol Mode Manual
-btn_manual = tk.Button(root, text="Mode Input Manual", width=20, command=lambda: messagebox.showinfo("Info", "Mode Manual"))
-btn_manual.pack(pady=10)
-
-# Tombol Mode Upload CSV
-btn_csv = tk.Button(root, text="Mode Upload CSV", width=20, command=predict_csv)
-btn_csv.pack(pady=10)
-
-root.mainloop()
