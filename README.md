@@ -1,4 +1,5 @@
 <h2>Cara Menjalankan Aplikasi</h2>
+<p>Catatan : pastikan anda sudah menginstal python dan pip di perangkat anda</p>
 <ol>
   <li>Buat sebuah folder dan clone aplikasi ini</li>
   <li>Satu tingkat dengan folder project, buat sebuah environment Env dengan cara jalankan perintah <strong>py -m venv Env</strong></li>
