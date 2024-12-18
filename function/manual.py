@@ -16,19 +16,28 @@ try:
 except FileNotFoundError:
     raise Exception("Scaler file not found! Make sure the scaler file exists in the correct path.")
 
+def cm_to_feet(cm):
+    """Konversi dari cm ke feet."""
+    return cm / 30.48
+
+def gram_to_ons(gram):
+    """Konversi dari gram ke ons."""
+    return gram / 28.3495
+
+
 def predict_manual(features):
     prediction = model.predict(features)
     return prediction.tolist()[0]  
 
 def get_prediction_manual(entry_length, entry_diameter, entry_height, entry_weight, entry_shucked_weight, entry_viscera_weight, entry_shell_weight, var_sex, label_result):
     try:
-        length = float(entry_length.get())
-        diameter = float(entry_diameter.get())
-        height = float(entry_height.get())
-        weight = float(entry_weight.get())
-        shucked_weight = float(entry_shucked_weight.get())
-        viscera_weight = float(entry_viscera_weight.get())
-        shell_weight = float(entry_shell_weight.get())
+        length = cm_to_feet(float(entry_length.get()))
+        diameter = cm_to_feet(float(entry_diameter.get()))
+        height = cm_to_feet(float(entry_height.get()))
+        weight = gram_to_ons(float(entry_weight.get()))
+        shucked_weight = gram_to_ons(float(entry_shucked_weight.get()))
+        viscera_weight = gram_to_ons(float(entry_viscera_weight.get()))
+        shell_weight = gram_to_ons(float(entry_shell_weight.get()))
 
         sex = var_sex.get()
 
