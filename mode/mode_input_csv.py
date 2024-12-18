@@ -36,6 +36,7 @@ def predict_csv():
             messagebox.showerror("Error", "File CSV tidak memiliki kolom yang sesuai.")
             return
         
+        # HAPUS INI KALO IDAK PERLU
         df['Length'] = df['Length'].apply(cm_to_feet)
         df['Diameter'] = df['Diameter'].apply(cm_to_feet)
         df['Height'] = df['Height'].apply(cm_to_feet)

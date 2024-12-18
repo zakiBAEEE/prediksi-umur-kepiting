@@ -29,6 +29,7 @@ def predict_manual(features):
 
 def get_prediction_manual(entry_length, entry_diameter, entry_height, entry_weight, entry_shucked_weight, entry_viscera_weight, entry_shell_weight, var_sex, label_result):
     try:
+        # KONVERSI SATUAN
         length = cm_to_feet(float(entry_length.get()))
         diameter = cm_to_feet(float(entry_diameter.get()))
         height = cm_to_feet(float(entry_height.get()))
