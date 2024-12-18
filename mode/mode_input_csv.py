@@ -57,11 +57,11 @@ def predict_csv():
         df['Umur'] = predictions_denormalized.flatten()
 
         # Simpan hasil ke file baru
-        save_path = filedialog.asksaveasfilename(defaultextension=".csv",
-                                                 filetypes=[("CSV Files", "*.csv")],
-                                                 initialfile="predicted_results.csv")
+        save_path = filedialog.asksaveasfilename(defaultextension=".xlsx",
+                                                 filetypes=[("Excel Files", "*.xlsx")],
+                                                 initialfile="hasil_prediksi.xlsx")
         if save_path:
-            df.to_csv(save_path, index=False)
+            df.to_excel(save_path, index=False, engine='openpyxl')
             messagebox.showinfo("Success", f"Hasil prediksi berhasil disimpan di:\n{save_path}")
         else:
             messagebox.showwarning("Warning", "Penyimpanan dibatalkan.")

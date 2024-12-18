@@ -29,13 +29,13 @@ def start_manual_input_mode():
         entry.grid(row=row, column=1, padx=10, pady=5, sticky="w")
         entries[text] = entry
 
-    entry_length = entries["Length (feet)"]
-    entry_diameter = entries["Diameter (feet)"]
-    entry_height = entries["Height (feet)"]
-    entry_weight = entries["Weight (ons)"]
-    entry_shucked_weight = entries["Shucked Weight (ons)"]
-    entry_viscera_weight = entries["Viscera Weight (ons)"]
-    entry_shell_weight = entries["Shell Weight (ons)"]
+    entry_length = entries["Length (Cm)"]
+    entry_diameter = entries["Diameter (Cm)"]
+    entry_height = entries["Height (Cm)"]
+    entry_weight = entries["Weight (Gram)"]
+    entry_shucked_weight = entries["Shucked Weight (Gram)"]
+    entry_viscera_weight = entries["Viscera Weight (Gram)"]
+    entry_shell_weight = entries["Shell Weight (Gram)"]
 
     label_sex = tk.Label(root, text="Sex", font=label_font)
     label_sex.grid(row=8, column=0, padx=10, pady=5, sticky="e")
