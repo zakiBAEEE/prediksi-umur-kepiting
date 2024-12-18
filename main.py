@@ -11,21 +11,22 @@ def open_csv_input_mode():
 def main():
     # Inisialisasi window Tkinter
     root = tk.Tk()
-    root.title("Pilih Mode Prediksi")
-    root.geometry("300x200")
+    root.title("Aplikasi Prediksi Umur Kepiting")
+    root.geometry("350x200")
 
     # Styling
-    label_font = ("Arial", 14)
+    label_font = ("Arial", 14, "bold")
+    button_font = ("Arial", 12)  # Font untuk tombol (tipis)
 
     # Title
     title_label = tk.Label(root, text="Pilih Mode Prediksi", font=label_font)
     title_label.pack(pady=20)
 
     # Buttons untuk memilih mode prediksi
-    button_manual = tk.Button(root, text="Input Manual", font=label_font, command=start_manual_input_mode)
+    button_manual = tk.Button(root, text="Input Manual", font=button_font, bg="green", fg="white", activebackground="darkgreen", activeforeground="white", command=start_manual_input_mode)
     button_manual.pack(pady=10)
 
-    button_csv = tk.Button(root, text="Input CSV", font=label_font, command=predict_csv)
+    button_csv = tk.Button(root, text="Input CSV", font=button_font, bg="blue", fg="white", activebackground="darkblue", activeforeground="white" ,command=predict_csv,)
     button_csv.pack(pady=10)
 
     root.mainloop()
