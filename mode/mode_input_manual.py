@@ -17,8 +17,8 @@ def start_manual_input_mode():
 
     # List input dengan satuan feet dan ons
     inputs = [
-        ("Length (feet)", 1), ("Diameter (feet)", 2), ("Height (feet)", 3),
-        ("Weight (ons)", 4), ("Shucked Weight (ons)", 5), ("Viscera Weight (ons)", 6), ("Shell Weight (ons)", 7)
+        ("Length (Cm)", 1), ("Diameter (Cm)", 2), ("Height (Cm)", 3),
+        ("Weight (Gram)", 4), ("Shucked Weight (Gram)", 5), ("Viscera Weight (Gram)", 6), ("Shell Weight (Gram)", 7)
     ]
 
     entries = {}
