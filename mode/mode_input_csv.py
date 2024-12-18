@@ -54,7 +54,7 @@ def predict_csv():
         predictions_denormalized = scaler_label_data.inverse_transform(predictions_normalized.reshape(-1, 1))
 
         # Tambahkan hasil prediksi ke DataFrame
-        df['Umur'] = predictions_denormalized.flatten()
+        df['Umur (Bulan)'] = predictions_denormalized.flatten().round(1)
 
         # Simpan hasil ke file baru
         save_path = filedialog.asksaveasfilename(defaultextension=".xlsx",
