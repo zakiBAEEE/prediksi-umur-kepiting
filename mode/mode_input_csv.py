@@ -21,12 +21,12 @@ def gram_to_ons(gram):
 def predict_csv():
     try:
         # Dialog untuk memilih file CSV
-        file_path = filedialog.askopenfilename(filetypes=[("CSV Files", "*.csv")])
+        file_path = filedialog.askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
         if not file_path:
             return  # Jika user membatalkan pilihan file
 
         # Baca file CSV
-        df = pd.read_csv(file_path)
+        df = pd.read_excel(file_path, engine='openpyxl')
 
         # Pastikan kolom input sesuai
         required_columns = ['Length', 'Diameter', 'Height', 'Weight',

@@ -26,7 +26,7 @@ def main():
     button_manual = tk.Button(root, text="Input Manual", font=button_font, bg="green", fg="white", activebackground="darkgreen", activeforeground="white", command=start_manual_input_mode)
     button_manual.pack(pady=10)
 
-    button_csv = tk.Button(root, text="Input CSV", font=button_font, bg="blue", fg="white", activebackground="darkblue", activeforeground="white" ,command=predict_csv,)
+    button_csv = tk.Button(root, text="Input Excel", font=button_font, bg="blue", fg="white", activebackground="darkblue", activeforeground="white" ,command=predict_csv,)
     button_csv.pack(pady=10)
 
     root.mainloop()
