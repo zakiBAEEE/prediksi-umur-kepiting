@@ -11,6 +11,12 @@ model = joblib.load('Machine_Learning/model_baru')
 scaler_fitur_data = joblib.load('Machine_Learning/scaler_fiturData')
 scaler_label_data = joblib.load('Machine_Learning/scaler_labelData')
 
+def cm_to_feet(cm):
+    return cm / 30.48
+
+def gram_to_ons(gram):
+    return gram / 28.3495
+
 # Fungsi prediksi untuk file CSV
 def predict_csv():
     try:
@@ -29,6 +35,14 @@ def predict_csv():
         if not all(col in df.columns for col in required_columns):
             messagebox.showerror("Error", "File CSV tidak memiliki kolom yang sesuai.")
             return
+        
+        df['Length'] = df['Length'].apply(cm_to_feet)
+        df['Diameter'] = df['Diameter'].apply(cm_to_feet)
+        df['Height'] = df['Height'].apply(cm_to_feet)
+        df['Weight'] = df['Weight'].apply(gram_to_ons)
+        df['Shucked Weight'] = df['Shucked Weight'].apply(gram_to_ons)
+        df['Viscera Weight'] = df['Viscera Weight'].apply(gram_to_ons)
+        df['Shell Weight'] = df['Shell Weight'].apply(gram_to_ons)
 
         # Normalisasi fitur
         features = df[required_columns].values
