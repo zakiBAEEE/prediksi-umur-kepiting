@@ -17,11 +17,9 @@ except FileNotFoundError:
     raise Exception("Scaler file not found! Make sure the scaler file exists in the correct path.")
 
 def cm_to_feet(cm):
-    """Konversi dari cm ke feet."""
     return cm / 30.48
 
 def gram_to_ons(gram):
-    """Konversi dari gram ke ons."""
     return gram / 28.3495
 
 
