@@ -5,7 +5,7 @@ from function.manual import get_prediction_manual
 
 def start_manual_input_mode():
     root = tk.Tk()
-    root.title("Prediction Umur Kepiting - Manual Input")
+    root.title("Prediksi Umur Kepiting - Input Manual")
     root.geometry("500x600")  # Tinggi diperbesar agar layout lebih pas
 
     title_font = ("Helvetica", 17, "bold")
