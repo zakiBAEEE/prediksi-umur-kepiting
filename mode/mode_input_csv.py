@@ -17,6 +17,14 @@ def cm_to_feet(cm):
 def gram_to_ons(gram):
     return gram / 28.3495
 
+def feet_to_cm(feet):
+    return feet * 30.48
+
+# Fungsi konversi ons ke gram
+def ons_to_gram(ons):
+    return ons * 28.3495
+
+
 # Fungsi prediksi untuk file CSV
 def predict_csv():
     try:
@@ -55,6 +63,14 @@ def predict_csv():
 
         # Tambahkan hasil prediksi ke DataFrame
         df['Umur (Bulan)'] = predictions_denormalized.flatten().round(1)
+
+        df['Length'] = df['Length'].apply(feet_to_cm)
+        df['Diameter'] = df['Diameter'].apply(feet_to_cm)
+        df['Height'] = df['Height'].apply(feet_to_cm)
+        df['Weight'] = df['Weight'].apply(ons_to_gram)
+        df['Shucked Weight'] = df['Shucked Weight'].apply(ons_to_gram)
+        df['Viscera Weight'] = df['Viscera Weight'].apply(ons_to_gram)
+        df['Shell Weight'] = df['Shell Weight'].apply(ons_to_gram)
 
         # Simpan hasil ke file baru
         save_path = filedialog.asksaveasfilename(defaultextension=".xlsx",
