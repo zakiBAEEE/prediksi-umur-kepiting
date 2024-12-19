@@ -8,3 +8,4 @@
   <li>Jalankan perintah <strong>py main.py </strong></li>
   <li>Aplikasi Siap digunakan</li>
 </ol>
+<p>Aplikasi ini menggunakan model machine learning yang dibangun menggunakan dataset dari : https://www.kaggle.com/datasets/sidhus/crab-age-prediction</p>
